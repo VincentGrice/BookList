@@ -27,5 +27,16 @@ namespace BookList.Pages.BookList
         {
            Books = await _db.Books.ToListAsync();
         }
+        //Delete method and use id same as the id in index
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var book = await _db.Books.FindAsync(id);
+            _db.Books.Remove(book);
+            await _db.SaveChangesAsync();
+
+            Message = "Book deleted Successfully";
+
+            return RedirectToPage("Index");
+        }
     }
 }

@@ -19,7 +19,7 @@
 }
 
 <a asp-page="Create" class="btn btn-primary">Create New Book</a>
-
+<form method="post">
 @if (Model.Books.Count() > 0)
 {
     <br /><br />
@@ -36,6 +36,8 @@
             <th>
                 @Html.DisplayNameFor(m => m.Books.FirstOrDefault().ISBN)
             </th>
+            <th></th>
+            <th></th>
         </tr>
         @foreach(var item in Model.Books)
         {
@@ -51,13 +53,18 @@
             <td>
                 @Html.DisplayFor(m => item.ISBN)
             </td>
+            <td>
+                <button asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-small">Delete</button>
+                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success" btn-small>Edit</a>
+            </td>
         </tr>
         }
     </table>
     <br />
     <br />
-}
-else
-{
-    <div>No Books in Database</div>
-}
+    }
+    else
+    {
+        <div>No Books in Database</div>
+    }
+</form>
