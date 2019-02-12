@@ -12,6 +12,9 @@ namespace BookList.Pages.BookList
     {
         private readonly ApplicationDbContext _db;
 
+        [TempData]
+        public string Message { get; set; }
+
         public CreateModel(ApplicationDbContext db)
         {
             _db = db;
@@ -34,6 +37,7 @@ namespace BookList.Pages.BookList
 
             _db.Books.Add(Book);
             await _db.SaveChangesAsync();
+            Message = "Book has been created successfuly";
             return RedirectToPage("Index");
         }
     }

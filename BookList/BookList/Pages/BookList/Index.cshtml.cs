@@ -12,6 +12,10 @@ namespace BookList.Pages.BookList
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
+
+        [TempData]
+        public string Message { get; set; }
+
         public IEnumerable<Book> Books { get; set; }
 
         public IndexModel(ApplicationDbContext db)
